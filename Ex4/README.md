@@ -2,7 +2,7 @@
 
 # Custom Container with Multiple Iterators
 
-This project implements a custom container class with various iteration patterns using C++17. The container supports multiple traversal strategies through specialized iterators.
+This project implements a custom generic container class with various iteration patterns. The container supports multiple traversal strategies through specialized iterators.
 #### Note: 
 This project is implemented primarily using header (`.hpp`) files because it extensively uses template classes. Template classes must be fully defined in headers since they need to be available at compile time. This allows the compiler to generate the correct code for each template instantiation with different types (`int`, `double`, `string`, etc.). Unlike regular classes, template code cannot be split between declaration (`.hpp`) and definition (`.cpp`) files due to template instantiation mechanics in C++.
 
@@ -32,7 +32,7 @@ Ex4/
 │   ├── doctest.h                    # Doctest file
 │   └── tests.cpp                    # Comprehensive test suite
 ├── makefile                         # Build configuration
-└── README.md                        # This file
+└── README.md                        
 ```
 
 ## Iterator Types
@@ -68,7 +68,6 @@ Ex4/
 
 ### Iterator Implementation
 - Each iterator maintains its own traversal logic
-- Consistent interface across all iterator types
 - Exception handling for out-of-bounds access
 
 ### Error Handling
@@ -97,7 +96,7 @@ Valgrind is used in this project to detect memory leaks, invalid memory access, 
 
 ## Building and Running
 
-## Makefile
+### Makefile
 The Makefile provides the following targets:
 | Target       | Description                   |
 | ------------ | ----------------------------- |
@@ -106,22 +105,22 @@ The Makefile provides the following targets:
 | `make valgrind`   | Run the main with valgrind for memory leak detection (can be changed to run on the tests) |
 | `make clean` | Cleans all compiled files     |
 
-## How To Run
+### How To Run
 Ensure you're in the project root directory (Ex4) and have `clang++` and `valgrind` installed.
 
-### Build And Run The Main Program
+#### Build And Run The Main Program
 ```bash
 make Main
 ```
-### Test running
+#### Test running
 ```bash
 make test
 ```
-### Memory Testing Using Valgrind
+#### Memory Testing Using Valgrind
 ```bash
 make valgrind 
 ```
-### Clean Build Files
+#### Clean Build Files
 ```bash
 make clean
 ```
