@@ -121,6 +121,29 @@ TEST_CASE("Ascending Order Iterator") {
         }
         CHECK(result == expected);
     }
+
+    SUBCASE("Post-Increment Operator") {
+        MyContainer<int> container;
+        container.add(1);
+        container.add(2);
+        container.add(3);
+
+        auto it = container.begin_asc();
+        int first = *it;
+        int second = *it++; // Post-increment should return old value
+        int third = *it; // Iterator should now point to next element
+
+        CHECK(first == 1); // First element
+        CHECK(second == 1); // Post-increment returns original value
+        CHECK(third == 2); // Iterator moved to next element
+
+        ++it; // Move to last element
+        CHECK(*it == 3);
+        it++; // Move to end
+        CHECK_THROWS_AS(*it, std::out_of_range);
+        CHECK_THROWS_AS(it++, std::out_of_range);
+    }
+
 }
 
 TEST_CASE("Descending Order Iterator Tests") {
@@ -244,6 +267,27 @@ TEST_CASE("Descending Order Iterator Tests") {
         }
         CHECK(result == expected);
     }
+        SUBCASE("Post-Increment Operator with Doubles") {
+        MyContainer<double> container;
+        container.add(7.5);
+        container.add(3.2);
+        container.add(9.1);
+
+        auto it = container.begin_desc();
+        double first = *it;
+        double second = *it++; // Post-increment should return old value
+        double third = *it; // Iterator should now point to next element
+
+        CHECK(first == 9.1); // First element (largest)
+        CHECK(second == 9.1); // Post-increment returns original value
+        CHECK(third == 7.5); // Iterator moved to next element
+
+        ++it;  // Move to last element
+        CHECK(*it == 3.2);
+        it++;  // Move to end
+        CHECK_THROWS_AS(*it, std::out_of_range);
+        CHECK_THROWS_AS(it++, std::out_of_range);
+    }
 }
 
 TEST_CASE("SideCross Order Iterator Tests") {
@@ -349,6 +393,28 @@ TEST_CASE("SideCross Order Iterator Tests") {
             result.push_back(*it);
         }
         CHECK(result == expected);
+    }
+
+        SUBCASE("Post-Increment Operator with Strings") {
+        MyContainer<std::string> container;
+        container.add("banana"); // Will be in middle
+        container.add("apple"); // Will be smallest
+        container.add("zebra"); // Will be largest
+        
+        auto it = container.begin_sidecross();
+        std::string first = *it;
+        std::string second = *it++; // Post-increment should return old value
+        std::string third = *it; // Iterator should now point to next element
+        
+        CHECK(first == "apple"); // First element (smallest)
+        CHECK(second == "apple"); // Post-increment returns original value
+        CHECK(third == "zebra"); // Iterator moved to next element (largest)
+        
+        ++it; // Move to last element
+        CHECK(*it == "banana"); // Middle element
+        it++;  // Move to end
+        CHECK_THROWS_AS(*it, std::out_of_range);
+        CHECK_THROWS_AS(it++, std::out_of_range);
     }
 }
 
@@ -468,6 +534,28 @@ TEST_CASE("Regular Order Iterator Tests") {
         }
         CHECK(result == expected);
     }
+
+        SUBCASE("Post-Increment Operator with Integers") {
+        MyContainer<int> container;
+        container.add(7); // First element
+        container.add(15); // Second element
+        container.add(6); // Third element
+
+        auto it = container.begin_order();
+        int first = *it;
+        int second = *it++; // Post-increment should return old value
+        int third = *it; // Iterator should now point to next element
+
+        CHECK(first == 7); // First element (original insertion order)
+        CHECK(second == 7); // Post-increment returns original value
+        CHECK(third == 15); // Iterator moved to next element
+
+        ++it; // Move to last element
+        CHECK(*it == 6);
+        it++; // Move to end
+        CHECK_THROWS_AS(*it, std::out_of_range);
+        CHECK_THROWS_AS(it++, std::out_of_range);
+    }
 }
 
 TEST_CASE("Reverse Order Iterator Tests") {
@@ -572,6 +660,28 @@ TEST_CASE("Reverse Order Iterator Tests") {
         }
         CHECK(result == expected);
     }
+
+        SUBCASE("Post-Increment Operator with Integers") {
+        MyContainer<int> container;
+        container.add(1); // Will be last in reverse order
+        container.add(2); // Will be middle in reverse order
+        container.add(3); // Will be first in reverse order
+
+        auto it = container.begin_reverse();
+        int first = *it;
+        int second = *it++; // Post-increment should return old value
+        int third = *it; // Iterator should now point to next element
+
+        CHECK(first == 3); // First element (last inserted)
+        CHECK(second == 3); // Post-increment returns original value
+        CHECK(third == 2); // Iterator moved to next element
+
+        ++it; // Move to last element
+        CHECK(*it == 1);
+        it++;  // Move to end
+        CHECK_THROWS_AS(*it, std::out_of_range);
+        CHECK_THROWS_AS(it++, std::out_of_range);
+    }
 }
 
 TEST_CASE("Middle Out Order Iterator Tests") {
@@ -667,6 +777,31 @@ TEST_CASE("Middle Out Order Iterator Tests") {
         ++it; // Move to end
         CHECK_THROWS_AS(*it, std::out_of_range);
         CHECK_THROWS_AS(++it, std::out_of_range);
+    }
+
+    // Add this SUBCASE inside TEST_CASE("Middle Out Order Iterator Tests")
+    SUBCASE("Post-Increment Operator with Doubles") {
+        MyContainer<double> container;
+        container.add(1.5); // Left of middle
+        container.add(2.5); // Middle element
+        container.add(3.5); // Right of middle
+        container.add(4.5); // Rightmost
+        container.add(5.5); // Leftmost
+
+        auto it = container.begin_middleout();
+
+        CHECK(*it == 3.5);  // Middle element
+        ++it;  // Move to next element
+        CHECK(*it == 2.5); 
+        ++it;
+        CHECK(*it == 4.5);
+        ++it;
+        CHECK(*it == 1.5);
+        ++it;
+        CHECK(*it == 5.5);
+        it++;  // Move to end
+        CHECK_THROWS_AS(*it, std::out_of_range);
+        CHECK_THROWS_AS(it++, std::out_of_range);
     }
 }
 
