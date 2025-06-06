@@ -91,6 +91,20 @@ namespace Container {
         }
 
         /**
+         * @brief Post-increment operator.
+         * @return Copy of iterator before increment.
+         * @throw std::out_of_range If incrementing past the end
+         */
+        MiddleOutOrderIterator operator++(int) {
+            if (pos >= container.size()) {
+                throw std::out_of_range("Cannot increment iterator past end");
+            }
+            MiddleOutOrderIterator temp = *this;
+            ++pos;
+            return temp;
+        }
+
+        /**
          * @brief Equality comparison operator.
          * @param other Another iterator to compare.
          * @return True if both iterators are at the same position and container.

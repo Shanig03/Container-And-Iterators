@@ -64,6 +64,24 @@ namespace Container {
         }
 
         /**
+         * @brief Post-increment operator.
+         * @return Copy of iterator before increment.
+         * @throw std::out_of_range If incrementing past the end
+         */
+        ReverseOrderIterator operator++(int) {
+            if (pos == static_cast<size_t>(-1)) {
+                throw std::out_of_range("Cannot increment iterator past end");
+            }
+            ReverseOrderIterator temp = *this;
+            if (pos == 0) {
+                pos = static_cast<size_t>(-1);
+            } else {
+                --pos;
+            }
+            return temp;
+        }
+
+        /**
          * @brief Equality comparison operator.
          * @param other Another iterator to compare.
          * @return True if both iterators are at the same position and container.
