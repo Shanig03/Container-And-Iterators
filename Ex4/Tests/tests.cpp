@@ -8,6 +8,17 @@
 
 using namespace Container;
 
+TEST_CASE("Empty Container Tests") {
+    MyContainer<> container;
+    CHECK(container.size() == 0);
+    CHECK(container.begin_asc() == container.end_asc());
+    CHECK(container.begin_desc() == container.end_desc());
+    CHECK(container.begin_sidecross() == container.end_sidecross());
+    CHECK(container.begin_reverse() == container.end_reverse());
+    CHECK(container.begin_order() == container.end_order());
+    CHECK(container.begin_middleout() == container.end_middleout());
+}
+
 TEST_CASE("Ascending Order Iterator") {
     SUBCASE("Integer Type") {
         MyContainer<int> container;
