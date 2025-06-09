@@ -1,6 +1,6 @@
 ### Email: shanig7531@gmail.com
 
-# Custom Container with Multiple Iterators
+# Container with Iterators Project
 
 This project implements a custom generic container class with various iteration patterns. The container supports multiple traversal strategies through specialized iterators.
 #### Note: 
@@ -69,6 +69,10 @@ Ex4/
 ### Iterator Implementation
 - Each iterator maintains its own traversal logic
 - Exception handling for out-of-bounds access
+
+#### Note: 
+* The MyContainer class uses std::vector for storage, which already manages memory and copying correctly. Therefore, the default implementations of the destructor, copy constructor, and assignment operators are sufficient and explicitly defaulted.
+* The iterator classes also use std::vector for their internal state and only store references or primitive types. Because of this, they do not require explicit implementations of the Rule of 3 functions—the compiler-generated versions are safe and correct.
 
 ### Error Handling
 - `std::runtime_error` for operational errors

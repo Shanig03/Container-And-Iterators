@@ -97,8 +97,8 @@ int main() {
     // Add elements
     strContainer.add("hello");
     strContainer.add("world");
-    strContainer.add("apple");
-    strContainer.add("banana");
+    strContainer.add("ball");
+    strContainer.add("dog");
 
     std::cout << "\nstrContainer: " << strContainer << std::endl;
 

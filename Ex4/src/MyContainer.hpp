@@ -41,7 +41,20 @@ namespace Container{
         /**
          * @brief Default destructor.
          */
-        ~MyContainer()= default; 
+        ~MyContainer()= default;
+        
+        /**
+         * @brief Copy constructor. Defaulted since vector handles it.
+         * @param other The container to copy from.
+         */
+        MyContainer(const MyContainer&) = default;
+
+        /**
+         * @brief Copy assignment operator. Defaulted since vector handles it.
+         * @param other The container to assign from.
+         * @return Reference to this container.
+         */
+        MyContainer& operator=(const MyContainer&) = default;
 
         /**
          * @brief Adds a new element to the container.

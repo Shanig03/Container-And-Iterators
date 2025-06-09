@@ -278,7 +278,7 @@ TEST_CASE("Descending Order Iterator Tests") {
         }
         CHECK(result == expected);
     }
-        SUBCASE("Post-Increment Operator with Doubles") {
+    SUBCASE("Post-Increment Operator with Doubles") {
         MyContainer<double> container;
         container.add(7.5);
         container.add(3.2);
