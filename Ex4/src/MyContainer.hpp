@@ -70,11 +70,14 @@ namespace Container{
          * @throw std::runtime_error If the value is not found in the container.
          */
         void remove(const T& value) {
+            auto old_size = data.size(); // Store the old size for error checking
             auto it = std::remove(data.begin(), data.end(), value);
-            if (it == data.end()) {
+            data.erase(it, data.end()); // Erase the elements that were removed
+
+            // If the size hasn't changed, the element was not found
+            if (data.size() == old_size) {
                 throw std::runtime_error("Element not found in container");
             }
-            data.erase(it, data.end());
         }
 
         /**

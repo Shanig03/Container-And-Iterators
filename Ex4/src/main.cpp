@@ -75,6 +75,13 @@ int main() {
     // Print after removal
     std::cout << "\nAfter removing 2: " << intContainer << std::endl;
 
+    // Try removing an element that exists
+    try{
+        intContainer.remove(2);
+    }
+    catch(const std::exception& e){
+        std::cerr << "\nAttempting to remove '2' the second time: " << e.what() << '\n';
+    }
 
     // Attempt to remove an element that does not exist
     std::cout << "\nAttempting to remove an element that does not exist (100): ";
