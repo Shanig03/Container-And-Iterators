@@ -1,6 +1,7 @@
 ### Email: shanig7531@gmail.com
 
 # Container with Iterators Project
+This project was developed as part of a university course assignment on Systems Programming 2.
 
 This project implements a custom generic container class with various iteration patterns. The container supports multiple traversal strategies through specialized iterators.
 #### Note: 
